@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1443467992 source:/home/aleksey/Documents/code/homework1/files/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+
