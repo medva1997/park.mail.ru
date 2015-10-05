@@ -28,12 +28,12 @@ int main(int argc, char *argv[])
     struct matrix matrixA;
 	struct matrix matrixB;
     struct matrix matrixC;
+
     matrixA.ind=0;
     matrixB.ind=0;
     matrixC.ind=0;
-
+    //чтение первого массива
     FILE *file1 = fopen(argv[1],"r");
-
     if(file1 == 0)	{
         printf("Can not open file '%s'",argv[1]);
         return 0;
@@ -44,14 +44,12 @@ int main(int argc, char *argv[])
 
     int index=0;
     while ((fscanf (file1, "%d%d%f", &matrixA.arr[index].i,&matrixA.arr[index].j,&matrixA.arr[index].val)) != EOF) {
-
 		index++;
     }
-
+    matrixA.ind=matrixA.not_null;
     fclose(file1);
 
-
-
+    //Чтение втого массива
     FILE *file2 = fopen(argv[2],"r");
     if(file2 == 0)	{
         printf("Can not open file '%s'",argv[2]);
@@ -63,103 +61,64 @@ int main(int argc, char *argv[])
 
     index=0;
     while ((fscanf (file2, "%d%d%f", &matrixB.arr[index].i,&matrixB.arr[index].j,&matrixB.arr[index].val)) != EOF) {
-
 		index++;
     }
-
-    fclose(file2);
-    matrixA.ind=matrixA.not_null;
     matrixB.ind=matrixB.not_null;
-
+    fclose(file2);
 
      if(matrixA.M!=matrixB.N)
      {
-     printf("Fold impossible");
-     return 0;
+        printf("Fold impossible");
+        return 0;
      }
      else
      {
-        //printf("Hello world! 12\n");
-      multiplication(&matrixA,&matrixB,&matrixC);
+        multiplication(&matrixA,&matrixB,&matrixC);//умножение
      }
-        //printf("Hello world! 13\n");
+     //вывод результата работы программы
      int i=0;
      int j=0;
-
-    printf( "\n 000000000000000000 \n");
-    printf( "%d \n",matrixC.N);
-    printf( "%d \n",matrixC.M);
-    printf( "\n 11111111111111111111 \n");
-
-     for(i=0; i<matrixA.N;i++)
-        {
-        //printf("Hello world! 17\n");
-            for(j=0;j<matrixA.M;j++)
-            {
-           //printf("Hello world! 18\n");
-               printf( "%f ",get_elem(&matrixA,i,j));
-            }
-        }
-
-        printf( "\n 222222222222222 \n");
-         for(i=0; i<matrixB.N;i++)
-        {
-        //printf("Hello world! 17\n");
-            for(j=0;j<matrixB.M;j++)
-            {
-           //printf("Hello world! 18\n");
-               printf( "%f ",get_elem(&matrixB,i,j));
-            }
-        }
-
-
- printf( "\n 3333333333333333333 \n");
      for(i=0; i<matrixC.N;i++)
+     {
+        for(j=0;j<matrixC.M;j++)
         {
-        //printf("Hello world! 17\n");
-            for(j=0;j<matrixC.M;j++)
-            {
-           //printf("Hello world! 18\n");
-               printf( "%f ",get_elem(&matrixC,i,j));
-            }
+            printf( "%f ",get_elem(&matrixC,i,j));
         }
-
+        printf("\n");
+     }
 
     free(matrixA.arr);
     free(matrixB.arr);
     free(matrixC.arr);
-    //printf("Hello world!\n");
-     return 0;
+    return 0;
 }
 
 void multiplication(struct matrix *matrixA,struct matrix *matrixB, struct matrix *matrixC)
-{      // printf("Hello world! 14\n");
-        matrixC->N=matrixA->N;
-        matrixC->M=matrixB->M;
-        matrixC->not_null=matrixC->N*matrixC->M;
-        matrixC->arr =malloc(matrixB->not_null*sizeof(struct element));
-        int i=0;
-        int j=0;
-        int k=0;
-        //printf("Hello world! 15\n");
-        for(i=0; i<matrixC->N;i++)
+{   //установка размеров 3 массива
+    matrixC->N=matrixA->N;
+    matrixC->M=matrixB->M;
+    matrixC->not_null=matrixC->N*matrixC->M;
+    matrixC->arr =malloc(matrixB->not_null*sizeof(struct element));
+    //умножение 3 массива
+    int i=0;
+    int j=0;
+    int k=0;
+    for(i=0; i<matrixC->N;i++)
+    {
+        for( j=0;j<matrixC->M;j++)
         {
-            for( j=0;j<matrixC->M;j++)
-            {   //printf("Hello world!16\n");
-                float temp=0;
-                for(k=0; k<matrixA->M;k++)
-                {
+            float temp=0;
+            for(k=0; k<matrixA->M;k++)
+            {
                 temp = temp + get_elem(matrixA, i, k) * get_elem(matrixB, k, j);
-
-                }
-                set_elem(matrixC,i,j,temp);
             }
+            set_elem(matrixC,i,j,temp);//установка нового элемнта в 3 массив
         }
-
+    }
 }
 
 
-float get_elem(struct matrix *matrixX, int row, int col)
+float get_elem(struct matrix *matrixX, int row, int col)//поиск нужного элемента
 {
 int k=0;
 int t=0;
@@ -173,7 +132,7 @@ int t=0;
     return 0;
 }
 
-void set_elem(struct matrix *matrixX,int row,int col, float elem)
+void set_elem(struct matrix *matrixX,int row,int col, float elem)//установка значения нужного эллемента
 {
     matrixX->arr[matrixX->ind].i=row;
     matrixX->arr[matrixX->ind].j=col;
