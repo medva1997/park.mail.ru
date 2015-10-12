@@ -1,0 +1,13 @@
++ <hi> +<my>  -<my> +<student>	?<student>
++ <from>
+-<hi>
++<from>
+-<hi>
++<hi>
+?<from>
+?<student>
+?<moscow>
++<cap>
++<cat>
++<table>
+-<cat>
