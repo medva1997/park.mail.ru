@@ -1,0 +1,6 @@
+5
+Moscow,16 st,fl 5;Popov;1995;big;15
+Vologda,16 st,fl 5;Ivanov;1996;small;3
+Londom,16 st,fl 5;Pupkin;1997;big;13
+Paris,16 st,fl 5;Medvedev;1998;town;10
+NY,16 st,fl 5;Popov;2000;town;10

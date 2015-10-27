@@ -1,0 +1,61 @@
+  string Building::get_adress()
+  {
+    return _adress;
+  }
+  
+   string Building::get_Arhitector()
+  {
+    return _Arhitector;
+  }
+  
+  int Building::get_year()
+  {
+    return _year;
+  } 
+  
+  string Building::get_typeofbuilding()
+  {
+    return _typeofbuilding;
+  }
+  
+  int Building::get_num_of_fl()
+  {
+    return _num_of_fl;
+  } 
+      
+  void Building::set_adress(string Building::adress)
+  {
+     _adress=adress;
+  }
+  
+   void Building::set_Arhitector(string Building::Arhitector)
+  {
+     _Arhitector=Arhitector;
+  }
+  
+  void Building::set_year(int Building:: year)
+  {
+     _year=year;
+  } 
+  
+  void Building::set_typeofbuilding(string Building::typeofbuilding)
+  {
+     _typeofbuilding=typeofbuilding;
+  }
+  
+  void Building::set_num_of_fl(int Building:: num_of_fl)
+  {
+     _num_of_fl=num_of_fl;
+  }   
+    
+    
+  void Building::setallparams(string adress,string Arhitector,int year,string typeofbuilding,int num_of_fl)
+  {
+      _adress=adress;
+      _Arhitector=Arhitector;
+      _year=year;
+      _typeofbuilding=typeofbuilding;
+      _num_of_fl=num_of_fl;
+  }
+
+

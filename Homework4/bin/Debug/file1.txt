@@ -1,0 +1,10 @@
+9
+Moscow Popov 1995 big 15
+Vologda Ivanov 1996 small 3
+London Pupkin 1997 big 13
+Paris Medvedev 1998 town 16
+NY Popov 2000 big 15
+Moscow Borisov 2015 private 1
+Barselona Kononenko 1997 big 100
+Valensia Pupkin	1995 small 10
+Kiev Borisov 2013 small 15 

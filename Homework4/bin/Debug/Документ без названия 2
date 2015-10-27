@@ -1,0 +1,5 @@
+cout <<" "<< _adress <<endl;   
+cout <<" "<< _Arhitector <<endl;  
+cout <<" "<< _year year <<endl;  
+cout <<" "<< _typeofbuilding  <<endl;  
+cout <<" "<< _numcout_of_fl <<endl;  
