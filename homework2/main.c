@@ -46,6 +46,12 @@ int main(int argc, char *argv[])
     while ((fscanf (file1, "%d%d%f", &matrixA.arr[index].i,&matrixA.arr[index].j,&matrixA.arr[index].val)) != EOF) {
 		index++;
     }
+    if (index!=matrixA.not_null)
+    {
+    printf("Error in file '%s'",argv[1]);
+    return 0;
+    }
+
     matrixA.ind=matrixA.not_null;
     fclose(file1);
 
@@ -63,6 +69,16 @@ int main(int argc, char *argv[])
     while ((fscanf (file2, "%d%d%f", &matrixB.arr[index].i,&matrixB.arr[index].j,&matrixB.arr[index].val)) != EOF) {
 		index++;
     }
+    if (if (index!=matrixA.not_null)
+    {printf("Error in file '%s'",argv[2]);
+    return 0;
+    }
+index!=matrixB.not_null)
+    {printf("Error in file '%s'",argv[2]);
+    return 0;
+    }
+
+
     matrixB.ind=matrixB.not_null;
     fclose(file2);
 
@@ -82,7 +98,7 @@ int main(int argc, char *argv[])
      {
         for(j=0;j<matrixC.M;j++)
         {
-            printf( "%f ",get_elem(&matrixC,i,j));
+            printf( "%.3f ",get_elem(&matrixC,i,j));
         }
         printf("\n");
      }
@@ -98,7 +114,7 @@ void multiplication(struct matrix *matrixA,struct matrix *matrixB, struct matrix
     matrixC->N=matrixA->N;
     matrixC->M=matrixB->M;
     matrixC->not_null=matrixC->N*matrixC->M;
-    matrixC->arr =malloc(matrixB->not_null*sizeof(struct element));
+    matrixC->arr =malloc(matrixC->not_null*sizeof(struct element));
     //умножение 3 массива
     int i=0;
     int j=0;

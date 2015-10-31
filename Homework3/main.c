@@ -194,6 +194,7 @@ int main(int argc, char *argv[])
     char word[max_string];
     memset (word, 0, sizeof(word));
 
+    //парсер сторки
 	while ((fgets (str,sizeof(str),file1)) != NULL) {
 
 
@@ -212,13 +213,14 @@ int main(int argc, char *argv[])
             if(str[i]=='>') {
 
                 finishposition=i-1;
+                //собираем слово
                 int k=0;
                 for(k=0; k<finishposition-startposition;k++){
                     word[k]=str[k+startposition+1];
                 }
                 word[k+1]='\0';
 
-
+                //удаление слова если оно есть в списке
                 if(action==0) {
                     int  res=search(list,word);
                     if(res>=0){
@@ -227,6 +229,7 @@ int main(int argc, char *argv[])
 
                 }
 
+                //вставка слова в список
                 if(action==1){
                     int  res=search(list,word);
                     if(res<0){
@@ -235,7 +238,7 @@ int main(int argc, char *argv[])
 
                     }
                }
-
+                //поиск слова
                  if(action==2){
                     int  res=search(list,word);
                     if(res>=0){
