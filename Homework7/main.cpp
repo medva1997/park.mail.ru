@@ -52,7 +52,7 @@ class Element{
             _prev=prev;
         }
 
-          void set_next(const int next)
+        void set_next(const int next)
         {
             _next=next;
         }
@@ -244,6 +244,21 @@ class ARRList{
             while(start!=-1);
         }
 
+        int change_elem(int pos,int val)
+        {
+            int start=_head;
+            int i=0;
+            do
+            {   if(i==pos)
+                {
+                    table[start].set_value(val);
+                }
+                i++;
+                start=table[start].get_next();
+            }
+            while(start!=-1);
+        }
+
         const int get_used()
         {
             return _used;
@@ -293,7 +308,33 @@ class ARRList{
         {
             delete_elem(pos);
         }
+
+        ARRList* operator=(const int val[MAXLENG])
+        {
+            ARRList* dblist=new ARRList(MAXLENG);
+            for(int i=0; i<MAXLENG;i++)
+            {
+                addelement(val[i]);
+            }
+            return dblist;
+
+        }
+
+        friend ostream& operator<<(ostream& os,const ARRList& db);
+
 };
+
+ostream& operator<<(ostream& os,const ARRList& db)
+{
+    int start=db._head;
+    do
+    {
+        os<<db.table[start].get_value()<<endl;
+        start=db.table[start].get_next();
+    }
+    while(start!=-1);
+    return os;
+}
 
 
 
@@ -303,6 +344,9 @@ int main()
     int a=0;
 
     ARRList* dblist1=new ARRList();
+
+    int arr[MAXLENG]={10,20,30,40,50};
+    *dblist1=arr;
 
     ifstream fin("/home/aleksey/Documents/park.mail.ru/Homework7/bin/Debug/list1.txt"); // открыли файл для чтения
     if (!fin.is_open()) // если файл не открыт
@@ -324,13 +368,11 @@ int main()
     cout<<"######################   1  ########################"<<endl;
     dblist1->show();
     cout<<"------------------------------------------------------"<<endl;
-
-    *dblist1-16;
-    *dblist1-15;
-    *dblist1-14;
-    *dblist1-13;
-    *dblist1-5;
-    *dblist1-5;
+    int temp=dblist1->get_used();
+    *dblist1-(temp-1);
+    *dblist1-(temp-2);
+    *dblist1-(temp-3);
+    *dblist1-(temp-4);
     *dblist1-0;
     *dblist1-0;
     *dblist1-0;
@@ -338,7 +380,7 @@ int main()
 
 
     cout<<"############### DEL from list 1####################"<<endl;
-    dblist1->show();
+    cout<<*dblist1;
     cout<<"------------------------------------------------------"<<endl;
 
 
@@ -358,7 +400,7 @@ int main()
     }
 
 	cout<<"####################  2 #############################"<<endl;
-    dblist2->show();
+     cout<<*dblist2;
     cout<<"------------------------------------------------------"<<endl;
 
     fin2.close(); // закрываем файл
@@ -378,8 +420,10 @@ int main()
     {
         dblist3->addelement(dblist2->get_elem(f));
     }
+
+
     cout<<"###################      3   #############################"<<endl;
-    dblist3->show();
+    cout<<*dblist3;
     cout<<"------------------------------------------------------"<<endl;
 
 }
