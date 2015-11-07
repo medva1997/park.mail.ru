@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1446926189 source:/home/aleksey/Documents/park.mail.ru/Homework7/main.cpp
+	<iostream>
+	<fstream>
+	<string.h>
+

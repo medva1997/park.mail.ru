@@ -21,18 +21,6 @@ class Element{
             _value=value;
             _used=true;
         }
-        Element(const Element &obj)
-        {
-
-        }
-
-        void set_element(const int prev,const int next, const int value)
-        {
-            _prev=prev;
-            _next=next;
-            _value=value;
-            _used=true;
-        }
 
         const int get_prev()
         {
@@ -49,6 +37,14 @@ class Element{
         const bool get_used()
         {
             return _used;
+        }
+
+        void set_element(const int prev,const int next, const int value)
+        {
+            _prev=prev;
+            _next=next;
+            _value=value;
+            _used=true;
         }
 
         void set_prev(const int prev)
@@ -69,7 +65,6 @@ class Element{
 
         void set_notused()
         {
-
             _used=false;;
         }
 
@@ -84,6 +79,7 @@ class ARRList{
         Element* table;
         Element* newtable;
         int _firstfree;
+
     public:
 
         ARRList()
@@ -100,6 +96,22 @@ class ARRList{
             _used=0;
         }
 
+         ARRList(const ARRList &obj)
+        {
+            table=new Element[obj._maxforuse];
+            _head=obj._head;
+            _bottom=obj._bottom;
+            _maxforuse=obj._maxforuse;
+
+            for (int i=0;i<obj._maxforuse;i++)
+            {
+                table[i]=obj.table[i];
+            }
+
+            _used=obj._used;
+            _firstfree=obj._firstfree;
+        }
+
         ~ARRList()
         {
             delete[] table;
@@ -108,7 +120,6 @@ class ARRList{
 
         int searchpos(int val)
         {
-
             int start=_head;
             while(table[start].get_value()<val)
             {
@@ -124,12 +135,10 @@ class ARRList{
                 }
             }
             return table[start].get_prev();
-
         }
 
         void addelement(int value)
         {
-
             if((_used==0)&&(_maxforuse>=1))
             {
                 _head=0;
@@ -143,16 +152,12 @@ class ARRList{
                 if(_used<_maxforuse)
                 {
                     int pos=searchpos(value);
-                    //cout<<pos<<"xaaaa "<<_firstfree <<endl;
-                    if((pos==-1)&&(value<table[_head].get_value())){
-                        //cout<<"NULL"<<endl;
-                        //cout<< table[_firstfree].get_value()<<" "<<_head<<" "<< table[_head].get_value()<<endl;
+
+                    if((pos==-1)&&(value<=table[_head].get_value())){
+
                         table[_firstfree].set_element(-1,_head,value);
                         table[_head].set_prev(_firstfree);
-                        _head=_firstfree;
-
-                        //cout<< table[_firstfree].get_value()<<" h "<<_head<<" second"<< table[table[_head].get_next()].get_value()<<endl;
-
+                         _head=_firstfree;
                     }
                     else
                     {
@@ -172,12 +177,13 @@ class ARRList{
 
                             _bottom=_firstfree;
                         }
+
                     }
                     _used++;
-
                 }
                 else
                 {
+
                      cout<<"Добавление памяти"<<endl;
                      newtable=new Element[MAXLENG+_maxforuse];
                      memcpy(newtable,table,_maxforuse*sizeof(Element));
@@ -200,13 +206,27 @@ class ARRList{
 
 
         void show()
-        {   int start=_head;
+        {
+            int start=_head;
             do
             {
                 cout<<table[start].get_value()<<endl;
                 start=table[start].get_next();
             }
             while(start!=-1);
+        }
+
+        void show1()
+        {
+            cout<<"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<endl;
+            cout<<_head<<"\t"<<_used<<"\t"<<_bottom<<endl;
+            cout<<"N"<<"\t"<<"next"<<"\t"<<"prev"<<"\t"<<"used"<<"\t"<<"val"<<" "<<endl;
+            for(int i=0; i<_maxforuse;i++)
+            {
+                cout<<i<<"\t"<<table[i].get_next()<<"\t"<<table[i].get_prev()<<"\t"<<table[i].get_used()<<"\t"<<table[i].get_value()<<" "<<endl;
+            }
+            cout<<"___________________________________________________________________"<<endl;
+            show();
         }
 
         int get_elem(int c)
@@ -229,55 +249,115 @@ class ARRList{
             return _used;
         }
 
-
         void delete_elem(int pos)
         {
+            int start=_head;
+            int i=0;
+            do
+            {
+                if(i==pos)
+                {
+                    break;
+                }
+                i++;
+                start=table[start].get_next();
+            }
+            while(start!=-1);
+
+            pos=start;
             _firstfree=pos;
+
             table[table[pos].get_next()].set_prev(table[pos].get_prev());
-            table[table[pos].get_prev()].set_next(table[pos].get_next());
+
+            if(table[pos].get_prev()!=-1)
+            {
+                table[table[pos].get_prev()].set_next(table[pos].get_next());
+            }
+            else
+            {
+                _head=table[pos].get_next();
+            }
+
+
+
             table[pos].set_notused();
+            _used--;
+        }
 
+        void operator + ( const int value)
+        {
+            addelement(value);
+        }
 
+        void operator - ( const int pos)
+        {
+            delete_elem(pos);
         }
 };
 
 
+
+
 int main()
 {
-
     int a=0;
-    //cin>>b;
+
     ARRList* dblist1=new ARRList();
-    ifstream fin("/home/aleksey/Code/Homework5/bin/Debug/list1.txt"); // открыли файл для чтения
+
+    ifstream fin("/home/aleksey/Documents/park.mail.ru/Homework7/bin/Debug/list1.txt"); // открыли файл для чтения
     if (!fin.is_open()) // если файл не открыт
         cout << "Файл не может быть открыт!\n"<<endl; // сообщить об этом
     else
     {
         cout << "Чтение файла №1"<<endl;; // сообщить об этом
     }
-    while(fin>>a)
-    {   dblist1->addelement(a);
 
+    while(fin>>a)
+    {
+        *dblist1+a;
     }
+
+
     fin.close(); // закрываем файл
-    cout<<"#####################################################"<<endl;
+
+
+    cout<<"######################   1  ########################"<<endl;
+    dblist1->show();
+    cout<<"------------------------------------------------------"<<endl;
+
+    *dblist1-16;
+    *dblist1-15;
+    *dblist1-14;
+    *dblist1-13;
+    *dblist1-5;
+    *dblist1-5;
+    *dblist1-0;
+    *dblist1-0;
+    *dblist1-0;
+    *dblist1-0;
+
+
+    cout<<"############### DEL from list 1####################"<<endl;
     dblist1->show();
     cout<<"------------------------------------------------------"<<endl;
 
 
     ARRList* dblist2=new ARRList();
-    ifstream fin2("/home/aleksey/Code/Homework5/bin/Debug/list2.txt"); // открыли файл для чтения
+    ifstream fin2("/home/aleksey/Documents/park.mail.ru/Homework7/bin/Debug/list2.txt"); // открыли файл для чтения
     if (!fin2.is_open()) // если файл не открыт
         cout << "Файл не может быть открыт!\n"<<endl; // сообщить об этом
     else
     {
         cout << "Чтение файла №2"<<endl; // сообщить об этом
     }
+
+
     while(fin2>>a)
     {
-        dblist2->addelement(a);
+        *dblist2+a;
     }
-	cout<<"#####################################################"<<endl;
+
+	cout<<"####################  2 #############################"<<endl;
     dblist2->show();
     cout<<"------------------------------------------------------"<<endl;
 
@@ -286,18 +366,19 @@ int main()
     int n=dblist1->get_used();
     int m=dblist2->get_used();
 
-    ARRList* dblist3=new ARRList(n+m);
+    ARRList* dblist3= new ARRList(n+m);
+
+
     for(int i=0; i<n;i++)
     {
         dblist3->addelement(dblist1->get_elem(i));
     }
 
-    for(int i=0; i<m;i++)
+    for(int f=0; f<m;f++)
     {
-        dblist3->addelement(dblist2->get_elem(i));
+        dblist3->addelement(dblist2->get_elem(f));
     }
-
-    cout<<"#####################################################"<<endl;
+    cout<<"###################      3   #############################"<<endl;
     dblist3->show();
     cout<<"------------------------------------------------------"<<endl;
 
