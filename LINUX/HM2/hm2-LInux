@@ -1,0 +1,77 @@
+HM2 linux
+/etc/bind
+
+    1  ls -l
+    2  cat named.conf
+    3  cat named.conf.options 
+    4  nano  named.conf.options 
+    5  rndc reconfig
+    6  dig ya @192.168.1.93
+    7  dig ya.ru @127.0.0.1
+    8  nano  named.conf.options 
+    9  rndc reconfig
+   10  dig ya.ru @127.0.0.1
+   11  dig ya.ru @192.168.1.93
+   12  ls
+   13  cat db.empty>balinux
+   14  nano db.empty>balinux
+   15  nano balinux
+   16  cat db.empty>balinux
+   17  nano balinux
+   18  named-checkzone -D balinux balinux 
+   19  nano balinux
+   20  named-checkzone -D balinux balinux 
+   21  nano balinux
+   22  named-checkzone -D balinux balinux 
+   23  nano balinux
+   24  named-checkzone -D balinux balinux 
+   25  nano balinux
+   26  named-checkzone -D balinux balinux 
+   27  nano named.conf.local 
+   28  named-checkconf 
+   29  named-checkconf -z
+   30* 
+   31  rndc reload
+   32  host -t ANY balinux 127.0.0.1
+   33  host -t ANY balinux. 127.0.0.1
+   34  host -t ANY almedvedev.balinux. 127.0.0.1
+   35  dig balinux @127.0.0.1
+   36  dig almedvedevbalinux @127.0.0.1
+   37  dig almedvedev.balinux @127.0.0.1
+   38  dig ANY almedvedev.balinux @127.0.0.1
+   39  dig ANY balinux @127.0.0.1
+   40  nano balinux
+   41  cat balinux>almedvedev.balinux
+   42  nano almedvedev.balinux
+   43  named-checkzone -D almedvedev.balinux almedvedev.balinux 
+   44  nano almedvedev.balinux
+   45  named-checkzone -D almedvedev.balinux almedvedev.balinux 
+   46  nano almedvedev.balinux
+   47  named-checkzone -D almedvedev.balinux almedvedev.balinux 
+   48  nano almedvedev.balinux
+   49  named-checkzone -D almedvedev.balinux almedvedev.balinux 
+   50  nano named.conf.local 
+   51  ls
+   52  nano balinux 
+   53  named-checkzone -D almedvedev.balinux almedvedev.balinux 
+   54  named-checkconf -z
+   55  nano balinux 
+   56  named-checkconf -z
+   57  ls
+   58  nano balinux 
+   59  nano named.conf.local 
+   60  named-checkconf -z
+   61  rndc reload
+   62  rndc reconfig
+   63  rndc reload
+   64  dig almedvedev.balinux @127.0.0.1
+   65  named-checkzone -D almedvedev.balinux almedvedev.balinux 
+   66  nano named.conf
+   67  nano named.conf.options 
+   68  dig almedvedev.balinux @192.168.1.93
+   69  dig almedvedev.balinux @127.0.0.1
+   70  history
+
+
+
+

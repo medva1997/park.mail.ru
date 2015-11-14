@@ -1,0 +1,10 @@
+$TTL	60
+balinux.	IN	SOA	ns1.balinux. hostmaster.balinux. (
+			      2		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			  86400 )	; Negative Cache TTL
+		IN	NS	ns1.balinux.
+ns1	IN	A	192.168.1.93
+people	IN	A	192.168.1.93
