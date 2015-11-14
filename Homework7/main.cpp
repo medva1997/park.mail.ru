@@ -231,17 +231,18 @@ class ARRList{
 
         int get_elem(int c)
         {
-            int start=_head;
-            int i=0;
-            do
-            {   if(i==c)
-                {
-                    return table[start].get_value();
+
+                int start=_head;
+                int i=0;
+                do
+                {   if(i==c)
+                    {
+                        return table[start].get_value();
+                    }
+                    i++;
+                    start=table[start].get_next();
                 }
-                i++;
-                start=table[start].get_next();
-            }
-            while(start!=-1);
+                while(start!=-1);
         }
 
         int change_elem(int pos,int val)
@@ -266,58 +267,68 @@ class ARRList{
 
         void delete_elem(int pos)
         {
-            int start=_head;
-            int i=0;
-            do
+
+            if(pos>=_used)
             {
-                if(i==pos)
-                {
-                    break;
-                }
-                i++;
-                start=table[start].get_next();
-            }
-            while(start!=-1);
+                cout<<"ошибка удаления"<<endl;
 
-            pos=start;
-            _firstfree=pos;
-
-            table[table[pos].get_next()].set_prev(table[pos].get_prev());
-
-            if(table[pos].get_prev()!=-1)
-            {
-                table[table[pos].get_prev()].set_next(table[pos].get_next());
             }
             else
             {
-                _head=table[pos].get_next();
+                int start=_head;
+                int i=0;
+                do
+                {
+                    if(i==pos)
+                    {
+                        break;
+                    }
+                    i++;
+                    start=table[start].get_next();
+                }
+                while(start!=-1);
+
+                pos=start;
+                _firstfree=pos;
+
+                table[table[pos].get_next()].set_prev(table[pos].get_prev());
+
+                if(table[pos].get_prev()!=-1)
+                {
+                    table[table[pos].get_prev()].set_next(table[pos].get_next());
+                }
+                else
+                {
+                    _head=table[pos].get_next();
+                }
+
+
+
+                table[pos].set_notused();
+                _used--;
             }
-
-
-
-            table[pos].set_notused();
-            _used--;
         }
 
-        void operator + ( const int value)
+        ARRList& operator + ( const int value)
         {
             addelement(value);
+            return *this;
         }
 
-        void operator - ( const int pos)
+        ARRList& operator - ( const int pos)
         {
             delete_elem(pos);
+            return *this;
         }
 
-        ARRList* operator=(const int val[MAXLENG])
+        ARRList& operator=(const int val[MAXLENG])
         {
             ARRList* dblist=new ARRList(MAXLENG);
             for(int i=0; i<MAXLENG;i++)
             {
                 addelement(val[i]);
             }
-            return dblist;
-
+            return *dblist;
         }
 
         friend ostream& operator<<(ostream& os,const ARRList& db);
@@ -358,7 +369,7 @@ int main()
 
     while(fin>>a)
     {
-        *dblist1+a;
+        *dblist1=*dblist1+a;
     }
 
 
@@ -369,14 +380,14 @@ int main()
     dblist1->show();
     cout<<"------------------------------------------------------"<<endl;
     int temp=dblist1->get_used();
-    *dblist1-(temp-1);
-    *dblist1-(temp-2);
-    *dblist1-(temp-3);
-    *dblist1-(temp-4);
-    *dblist1-0;
-    *dblist1-0;
-    *dblist1-0;
-    *dblist1-0;
+    *dblist1=*dblist1-(temp-1);
+    *dblist1=*dblist1-(temp-2);
+    *dblist1=*dblist1-(temp-3);
+    *dblist1=*dblist1-(temp-4);
+    *dblist1=*dblist1-0;
+    *dblist1=*dblist1-0;
+    *dblist1=*dblist1-0;
+    *dblist1=*dblist1-0;
 
 
     cout<<"############### DEL from list 1####################"<<endl;
@@ -396,11 +407,11 @@ int main()
 
     while(fin2>>a)
     {
-        *dblist2+a;
+        *dblist2=*dblist2+a;
     }
 
 	cout<<"####################  2 #############################"<<endl;
-     cout<<*dblist2;
+    cout<<*dblist2;
     cout<<"------------------------------------------------------"<<endl;
 
     fin2.close(); // закрываем файл
@@ -413,12 +424,12 @@ int main()
 
     for(int i=0; i<n;i++)
     {
-        dblist3->addelement(dblist1->get_elem(i));
+        *dblist3=*dblist3+dblist1->get_elem(i);
     }
 
     for(int f=0; f<m;f++)
     {
-        dblist3->addelement(dblist2->get_elem(f));
+        *dblist3=*dblist3+dblist2->get_elem(f);
     }
 
 
