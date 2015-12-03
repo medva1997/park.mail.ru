@@ -1,0 +1,29 @@
+﻿Сборка начата 01.12.2015 18:29:56.
+     1>Проект "C:\Users\aleksey\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"stdafx.h" /Fp"Debug\ConsoleApplication1.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ConsoleApplication1.cpp
+         ConsoleApplication1.cpp
+     1>c:\users\aleksey\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\consoleapplication1.cpp(134): warning C4101: used: неиспользованная локальная переменная
+         c:\users\aleksey\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\consoleapplication1.cpp(126): note: при компиляции функции-члена "<Нет данных>" класса <Нет данных>
+         c:\users\aleksey\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\consoleapplication1.cpp(429): note: см. ссылку на создание экземпляров функции шаблон при компиляции "void Multimap<double,double>::append(keytype,valuetype)"
+                 with
+                 [
+                     keytype=double,
+                     valuetype=double
+                 ]
+         c:\users\aleksey\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\consoleapplication1.cpp(426): note: см. ссылку на создание экземпляров класса шаблон при компиляции "Multimap<double,double>"
+     1>c:\users\aleksey\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\consoleapplication1.cpp(100): warning C4473: "printf": передано недостаточно аргументов для строки формата
+         c:\users\aleksey\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\consoleapplication1.cpp(100): note: placeholders and their parameters expect 4 variadic arguments, but 3 were provided
+         c:\users\aleksey\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\consoleapplication1.cpp(100): note: the missing variadic argument 4 is required by format string '%d'
+         c:\users\aleksey\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\consoleapplication1.cpp(99): note: при компиляции функции-члена "<Нет данных>" класса <Нет данных>
+         c:\users\aleksey\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\consoleapplication1.cpp(137): note: см. ссылку на создание экземпляров функции шаблон при компиляции "void Multimap<double,double>::addmemory(void)"
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\aleksey\documents\visual studio 2015\Projects\ConsoleApplication1\Debug\ConsoleApplication1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\aleksey\documents\visual studio 2015\Projects\ConsoleApplication1\Debug\ConsoleApplication1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\aleksey\documents\visual studio 2015\Projects\ConsoleApplication1\Debug\ConsoleApplication1.lib" /MACHINE:X86 Debug\ConsoleApplication1.res
+         Debug\ConsoleApplication1.obj
+         Debug\stdafx.obj
+         ConsoleApplication1.vcxproj -> C:\Users\aleksey\documents\visual studio 2015\Projects\ConsoleApplication1\Debug\ConsoleApplication1.exe
+     1>Сборка проекта "C:\Users\aleksey\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:02.19
